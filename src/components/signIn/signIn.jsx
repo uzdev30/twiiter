@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useRef, useEffect } from "react";
+
 function SignIn({ openModalin, closeModalin, pasModal }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const refin = useRef();
-
+  const navigate = useNavigate();
   useEffect(() => {
     if (openModalin) {
       refin.current?.showModal();
@@ -22,7 +24,8 @@ function SignIn({ openModalin, closeModalin, pasModal }) {
       window.localStorage.getItem("email") === email &&
       window.localStorage.getItem("password") === password
     ) {
-      window.location.href = "http://localhost:3000/home";
+      navigate("/home");
+
       // alert("email or password wrong");
     } else {
       alert("email or password xato");
